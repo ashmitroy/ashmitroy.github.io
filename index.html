@@ -1,35 +1,109 @@
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ashmit — Creative Code & Strategy</title>
-<style>
-  body{font-family:system-ui,Arial;margin:0;line-height:1.6;background:#0f1115;color:#e8e8e8}
-  header,main{max-width:880px;margin:auto;padding:28px 20px}
-  h1{margin:0 0 6px 0} a{color:#9fdcff;text-decoration:none} a:hover{text-decoration:underline}
-  .card{border:1px solid #2a2f3a;border-radius:12px;padding:16px;margin:12px 0}
-</style>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ashmit Deb Roy — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
-  <header>
-    <h1>Ashmit</h1>
-    <p>Interactive Media @ KTH • Creative Coding • Design Strategy</p>
+  <!-- NAV -->
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">Ashmit Deb Roy</div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <h2>Lab</h2>
-    <div class="card">
-      <h3>Live Sketch 01 (p5.js)</h3>
-      <p>My first interactive poster.</p>
-      <p>👉 <a href="https://ashmitroy.github.io/interactive-poster-v1/" target="_blank">Open the sketch</a></p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Bridging AI technology with UX design</h1>
+      <p class="tagline">I design and prototype human-centered AI experiences using creative code.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn ghost" href="mailto:ashmit@example.com">Contact</a>
+      </div>
     </div>
-    <div class="card">
-  <h3>Mini‑Project A — Audiovisual Instrument</h3>
-  <p>Click to start audio. Move mouse: left↔right = pitch, down↔up = volume. Try different waveforms.</p>
-  <p>👉 <a href="https://ashmitroy.github.io/audiovisual-instrument-v1/" target="_blank">Open the instrument</a></p>
-</div>
+  </section>
 
-    <h2>About</h2>
-    <p>Learning by making. This page will grow into my portfolio. For now, here’s my first live prototype. Now with VS Code!!!</p>
-  </main>
+  <!-- PROJECTS -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>Selected Projects</h2>
+      <div class="grid">
+
+        <!-- CARD 1 — your live instrument -->
+        <article class="card">
+          <a class="thumb" href="https://ashmitroy.github.io/audiovisual-instrument-v1/" target="_blank" rel="noopener">
+            <img src="assets/audiovisual-thumb.jpg" alt="Audiovisual Instrument thumbnail" />
+          </a>
+          <div class="card-body">
+            <h3>Audiovisual Instrument</h3>
+            <p>Mouse controls pitch/volume; keys 1/2/3 switch styles. A study in sound–visual coupling and interaction.</p>
+            <div class="card-links">
+              <a href="https://ashmitroy.github.io/audiovisual-instrument-v1/" target="_blank" rel="noopener">Live Demo</a>
+              <a href="https://github.com/ashmitroy/audiovisual-instrument-v1" target="_blank" rel="noopener">Code</a>
+              <a href="project.html?slug=audiovisual-instrument">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 2 — Ritual prototype (placeholder) -->
+        <article class="card">
+          <a class="thumb" href="project.html?slug=echo-mandala">
+            <img src="assets/echo-mandala-thumb.jpg" alt="Echo Mandala thumbnail" />
+          </a>
+          <div class="card-body">
+            <h3>Echo Mandala (concept)</h3>
+            <p>Repetition as ritual: collective gestures generate evolving mandalas. Prototype in progress.</p>
+            <div class="card-links">
+              <a href="project.html?slug=echo-mandala">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CARD 3 — Digital Flame (placeholder) -->
+        <article class="card">
+          <a class="thumb" href="project.html?slug=digital-flame">
+            <img src="assets/digital-flame-thumb.jpg" alt="Digital Flame thumbnail" />
+          </a>
+          <div class="card-body">
+            <h3>Digital Flame (concept)</h3>
+            <p>Symbolic “light a candle” ritual for shared remembrance in digital spaces.</p>
+            <div class="card-links">
+              <a href="project.html?slug=digital-flame">Details</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About</h2>
+      <p>
+        I’m a KTH master’s student in Interactive Media Technology. My focus: UX as the backbone,
+        creative coding for prototyping, and applied AI as a medium. I build systems where people and AI
+        collaborate—practically, responsibly, and beautifully.
+      </p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="y"></span> Ashmit Deb Roy · <a href="https://github.com/ashmitroy" target="_blank" rel="noopener">GitHub</a></small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
