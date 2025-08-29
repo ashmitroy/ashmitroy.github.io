@@ -10,4 +10,5 @@ window.ASHMIT_PROJECTS = [
     wide: "assets/audiovisual-wide.jpg",
     tags: ["Creative Code","p5.js","Interaction"]
   }
+  
 ];
