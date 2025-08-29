@@ -25,7 +25,7 @@
       <p class="tagline">I design and prototype human-centered AI experiences using creative code.</p>
       <div class="hero-cta">
         <a class="btn" href="#projects">View Projects</a>
-        <a class="btn ghost" href="mailto:ashmit@example.com">Contact</a>
+        <a class="btn ghost" href="mailto:ashmitdebroy@gmail.com">Contact</a>
       </div>
     </div>
   </section>
@@ -34,53 +34,7 @@
   <section id="projects" class="projects">
     <div class="container">
       <h2>Selected Projects</h2>
-      <div class="grid">
-
-        <!-- CARD 1 — your live instrument -->
-        <article class="card">
-          <a class="thumb" href="https://ashmitroy.github.io/audiovisual-instrument-v1/" target="_blank" rel="noopener">
-            <img src="assets/audiovisual-thumb.jpg" alt="Audiovisual Instrument thumbnail" />
-          </a>
-          <div class="card-body">
-            <h3>Audiovisual Instrument</h3>
-            <p>Mouse controls pitch/volume; keys 1/2/3 switch styles. A study in sound–visual coupling and interaction.</p>
-            <div class="card-links">
-              <a href="https://ashmitroy.github.io/audiovisual-instrument-v1/" target="_blank" rel="noopener">Live Demo</a>
-              <a href="https://github.com/ashmitroy/audiovisual-instrument-v1" target="_blank" rel="noopener">Code</a>
-              <a href="project.html?slug=audiovisual-instrument">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 2 — Ritual prototype (placeholder) -->
-        <article class="card">
-          <a class="thumb" href="project.html?slug=echo-mandala">
-            <img src="assets/echo-mandala-thumb.jpg" alt="Echo Mandala thumbnail" />
-          </a>
-          <div class="card-body">
-            <h3>Echo Mandala (concept)</h3>
-            <p>Repetition as ritual: collective gestures generate evolving mandalas. Prototype in progress.</p>
-            <div class="card-links">
-              <a href="project.html?slug=echo-mandala">Details</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- CARD 3 — Digital Flame (placeholder) -->
-        <article class="card">
-          <a class="thumb" href="project.html?slug=digital-flame">
-            <img src="assets/digital-flame-thumb.jpg" alt="Digital Flame thumbnail" />
-          </a>
-          <div class="card-body">
-            <h3>Digital Flame (concept)</h3>
-            <p>Symbolic “light a candle” ritual for shared remembrance in digital spaces.</p>
-            <div class="card-links">
-              <a href="project.html?slug=digital-flame">Details</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
+      <div class="grid"><!-- Cards injected here --></div>
     </div>
   </section>
 
@@ -96,14 +50,54 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
-      <small>© <span id="y"></span> Ashmit Deb Roy · <a href="https://github.com/ashmitroy" target="_blank" rel="noopener">GitHub</a></small>
+      <small>© <span id="y"></span> Ashmit Deb Roy · 
+        <a href="https://github.com/ashmitroy" target="_blank" rel="noopener">GitHub</a>
+      </small>
     </div>
   </footer>
 
+  <!-- Year -->
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Project Data -->
+  <script src="projects.js"></script>
+
+  <!-- Smooth scroll to Projects (kept) -->
+  <script>
+    const viewBtn = document.querySelector('.btn[href="#projects"]');
+    if (viewBtn) {
+      viewBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  </script>
+
+  <!-- ✅ Render cards from data -->
+  <script>
+    const list = window.ASHMIT_PROJECTS || [];
+    const grid = document.querySelector('.grid');
+    grid.innerHTML = list.map(p => `
+      <article class="card">
+        <a class="thumb" href="${p.demo && p.demo !== '#' ? p.demo : 'project.html?slug='+p.slug}" ${p.demo && p.demo !== '#' ? 'target="_blank" rel="noopener"' : ''}>
+          <img loading="lazy" src="${p.thumb}" alt="${p.title} thumbnail" />
+        </a>
+        <div class="card-body">
+          <h3>${p.title}</h3>
+          <p>${p.blurb}</p>
+          <div class="card-links">
+            ${p.demo && p.demo !== '#' ? `<a href="${p.demo}" target="_blank" rel="noopener">Live Demo</a>` : ``}
+            ${p.code && p.code !== '#' ? `<a href="${p.code}" target="_blank" rel="noopener">Code</a>` : ``}
+            <a href="project.html?slug=${p.slug}">Details</a>
+          </div>
+        </div>
+      </article>
+    `).join('');
   </script>
 </body>
 </html>
