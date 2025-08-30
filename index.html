@@ -80,24 +80,36 @@
 
   <!-- ✅ Render cards from data -->
   <script>
-    const list = window.ASHMIT_PROJECTS || [];
-    const grid = document.querySelector('.grid');
-    grid.innerHTML = list.map(p => `
+  const list = window.ASHMIT_PROJECTS || [];
+  const grid = document.querySelector('.grid');
+
+  // base path: local (Live Server) vs production (GitHub Pages)
+  const isLocal = (location.hostname === '127.0.0.1' || location.hostname === 'localhost');
+  const base = isLocal ? '/ashmitroy.github.io/' : '/';
+
+  grid.innerHTML = list.map(p => {
+    // if demo is absolute (starts with http), use as is; otherwise prepend base
+    const demoHref = (/^https?:\/\//i.test(p.demo)) ? p.demo : (base + p.demo);
+    const codeHref = p.code && !/^#?$/.test(p.code) ? p.code : null;
+
+    return `
       <article class="card">
-        <a class="thumb" href="${p.demo && p.demo !== '#' ? p.demo : 'project.html?slug='+p.slug}" ${p.demo && p.demo !== '#' ? 'target="_blank" rel="noopener"' : ''}>
+        <a class="thumb" href="${demoHref}" ${/^https?:\/\//i.test(demoHref) ? 'target="_blank" rel="noopener"' : ''}>
           <img loading="lazy" src="${p.thumb}" alt="${p.title} thumbnail" />
         </a>
         <div class="card-body">
           <h3>${p.title}</h3>
           <p>${p.blurb}</p>
           <div class="card-links">
-            ${p.demo && p.demo !== '#' ? `<a href="${p.demo}" target="_blank" rel="noopener">Live Demo</a>` : ``}
-            ${p.code && p.code !== '#' ? `<a href="${p.code}" target="_blank" rel="noopener">Code</a>` : ``}
+            <a href="${demoHref}" ${/^https?:\/\//i.test(demoHref) ? 'target="_blank" rel="noopener"' : ''}>Live Demo</a>
+            ${codeHref ? `<a href="${codeHref}" target="_blank" rel="noopener">Code</a>` : ``}
             <a href="project.html?slug=${p.slug}">Details</a>
           </div>
         </div>
       </article>
-    `).join('');
-  </script>
+    `;
+  }).join('');
+</script>
+
 </body>
 </html>
