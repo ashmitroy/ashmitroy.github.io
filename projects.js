@@ -1,9 +1,12 @@
+// ashmitroy.github.io/projects.js
 window.ASHMIT_PROJECTS = [
   {
     slug: "audiovisual-instrument-v1",
     title: "Audiovisual Instrument",
     blurb: "Mouse = pitch/volume; keys 1/2/3 switch styles.",
+    // Production: hosted on its own Pages site (repo)
     demoProd: "https://ashmitroy.github.io/audiovisual-instrument-v1/",
+    // Local: sibling folder outside the portfolio repo
     demoLocal: "../Projects/audiovisual-instrument-v1/index.html",
     code: "https://github.com/ashmitroy/audiovisual-instrument-v1",
     thumb: "assets/audiovisual-thumb.jpg",

@@ -79,29 +79,26 @@
   </script>
 
   <!-- ✅ Render cards from data -->
-  <script>
+<script src="projects.js"></script>
+<script>
   const list = window.ASHMIT_PROJECTS || [];
   const grid = document.querySelector('.grid');
-
-  // base path: local (Live Server) vs production (GitHub Pages)
-  const isLocal = (location.hostname === '127.0.0.1' || location.hostname === 'localhost');
-  const base = isLocal ? '/ashmitroy.github.io/' : '/';
+  const isProd = location.hostname.endsWith('github.io'); // production check
 
   grid.innerHTML = list.map(p => {
-    // if demo is absolute (starts with http), use as is; otherwise prepend base
-    const demoHref = (/^https?:\/\//i.test(p.demo)) ? p.demo : (base + p.demo);
-    const codeHref = p.code && !/^#?$/.test(p.code) ? p.code : null;
+    const demoHref = isProd ? p.demoProd : p.demoLocal;
+    const codeHref = p.code || null;
 
     return `
       <article class="card">
-        <a class="thumb" href="${demoHref}" ${/^https?:\/\//i.test(demoHref) ? 'target="_blank" rel="noopener"' : ''}>
+        <a class="thumb" href="${demoHref}">
           <img loading="lazy" src="${p.thumb}" alt="${p.title} thumbnail" />
         </a>
         <div class="card-body">
           <h3>${p.title}</h3>
           <p>${p.blurb}</p>
           <div class="card-links">
-            <a href="${demoHref}" ${/^https?:\/\//i.test(demoHref) ? 'target="_blank" rel="noopener"' : ''}>Live Demo</a>
+            <a href="${demoHref}">Live Demo</a>
             ${codeHref ? `<a href="${codeHref}" target="_blank" rel="noopener">Code</a>` : ``}
             <a href="project.html?slug=${p.slug}">Details</a>
           </div>
@@ -110,6 +107,7 @@
     `;
   }).join('');
 </script>
+
 
 </body>
 </html>
